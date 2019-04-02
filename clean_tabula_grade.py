@@ -24,7 +24,7 @@ if __name__ == '__main__':
                 course_num_section = row[0]
                 number_count = getNumCount(course_num_section)
                 header_check = checkHeader(row)
-                if number_count == 4 and (course_num_section not in course_names_set) and not header_check:
+                if number_count >= 4 and (course_num_section not in course_names_set) and not header_check:
                     course_num_section_split = row[0].split('-')
                     course_num = ' '.join(elem for elem in course_num_section_split[1].strip().split(' ')[0:-1])
                     course_section = course_num_section_split[1].strip().split(' ')[-1]
@@ -36,14 +36,14 @@ if __name__ == '__main__':
                         enrollment = data[2]
                         new_row = [term, course_num, course_section, gpa, enrollment]
                         irp_data.append(new_row)
-                        course_names_set.add(course_num_section)
+                        course_names_set.add(term + course_num + course_section)
                     elif len(data) == 2:
                         withdraw = 0
                         gpa = data[0]
                         enrollment = data[1]
                         new_row = [term, course_num, course_section, gpa, enrollment]
                         irp_data.append(new_row)
-                        course_names_set.add(course_num_section)
+                        course_names_set.add(term + course_num + course_section)
     dataframe = pd.DataFrame(irp_data)
     dataframe.to_csv('combined_irp_data.csv', sep=',')
 
