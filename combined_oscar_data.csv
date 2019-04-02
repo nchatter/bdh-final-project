@@ -1,4 +1,4 @@
-,0,1,2,3,4,5,6,7
+index, term, name, crn, course_num, section, credits, time, prof
 0,201702,Elementary Russian I,24151,RUSS 1001,E,4.000,12:05 pm - 12:55 pm,Tatiana   Kozhanova 
 1,201702,Elementary Russian I,22904,RUSS 1001,U,4.000,11:05 am - 11:55 am,Natasha   Anthony 
 2,201702,Elementary Russian I,22906,RUSS 1001,UA,4.000,11:05 am - 11:55 am,Natasha   Anthony 
