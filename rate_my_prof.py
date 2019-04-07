@@ -2,6 +2,8 @@ import requests
 import json
 import math
 import pandas as pd
+from bs4 import BeautifulSoup
+import re
 
 class Scraper:
 	def __init__(self, university):
@@ -30,10 +32,31 @@ class Scraper:
 		numProfs = jsonPage['remaining'] + 20
 		return numProfs
 
+	def getProfComments(self, tid):
+		page = requests.get(
+				"https://www.ratemyprofessors.com/ShowRatings.jsp?tid=" + str(tid))
+		soup = BeautifulSoup(page.text, 'html.parser')
+		comments = soup.find_all("p", class_="commentsParagraph")
+		return comments
+
 GATech = Scraper(361)
-
 gatechProfs = GATech.getAllProfs()
-print(gatechProfs)
+# comments = GATech.getProfComments(2356565)
+profComments = dict()
+for prof in gatechProfs:
+	comments = GATech.getProfComments(prof['tid'])
+	profComments[prof['tid']] = comments
 
-df = pd.DataFrame(gatechProfs)
-df.to_csv('profs.csv')
+profs = pd.DataFrame(gatechProfs)
+profs.to_csv('profs.csv')
+
+for tid in profComments:
+	print(tid)
+	print(profComments[tid])
+	print(len(profComments[tid]))
+comments = pd.DataFrame.from_dict(profComments)
+comments.to_csv('comments.csv')
+
+
+
+
