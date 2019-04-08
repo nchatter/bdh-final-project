@@ -200,7 +200,7 @@
 198,PROFESSOR,TEACHER,Georgia Institute of Technology,2.6,average,Engineering,Brent,Carter,,7,361,394513
 199,PROFESSOR,TEACHER,Georgia Institute of Technology,2.0,poor,Building Construction,Daniel,Castro-Lacouture,,1,361,2315230
 200,PROFESSOR,TEACHER,Georgia Institute of Technology,5.0,good,Physics,Michael,Cathcart,,1,361,1679025
-201,PROFESSOR,TEACHER,Georgia Institute of Technology,4.3,good,Psychology,Richard,Catrambone,,9,361,10617
+201,PROFESSOR,TEACHER,Georgia Institute of Technology,4.3,good,Psychology,Richard,Catrambone,,10,361,10617
 202,PROFESSOR,TEACHER,Georgia Institute of Technology,4.0,good,Electrical Engineering,Richard,Causey,,1,361,2397334
 203,PROFESSOR,TEACHER,Georgia Institute of Technology,2.8,average,Mathematics,Marcel,Celaya,,4,361,2174237
 204,PROFESSOR,TEACHER,Georgia Institute of Technology,5.0,good,English,Dongho,Cha,,6,361,2396595
@@ -308,7 +308,7 @@
 306,PROFESSOR,TEACHER,Georgia Institute of Technology,2.5,average,Mathematics,Rafael,de la Llave,,1,361,2012443
 307,PROFESSOR,TEACHER,Georgia Institute of Technology,4.5,good,English,Rachel,Dean-Ruzicka,,2,361,2332466
 308,PROFESSOR,TEACHER,Georgia Institute of Technology,4.8,good,Civil Engineering,Ben,Deaton,,3,361,1464316
-309,PROFESSOR,TEACHER,Georgia Institute of Technology,4.3,good,Health Science,Adam,Decker,,24,361,1661971
+309,PROFESSOR,TEACHER,Georgia Institute of Technology,4.5,good,Health Science,Adam,Decker,,24,361,1661971
 310,PROFESSOR,TEACHER,Georgia Institute of Technology,2.0,poor,Electrical Engineering,Levent,Degertekin,,1,361,2468302
 311,PROFESSOR,TEACHER,Georgia Institute of Technology,4.8,good,Mathematics,Yoan,Delchev,,8,361,2180201
 312,PROFESSOR,TEACHER,Georgia Institute of Technology,3.0,average,Computer Science,Frank,Dellaert,,2,361,656209
@@ -461,7 +461,7 @@
 459,PROFESSOR,TEACHER,Georgia Institute of Technology,5.0,good,Chinese,Yan,Gao,,1,361,2420678
 460,PROFESSOR,TEACHER,Georgia Institute of Technology,N/A,zero,Aerospace Engineering,Elena,Garcia,,0,361,2385563
 461,PROFESSOR,TEACHER,Georgia Institute of Technology,4.0,good,Mechanical Engineering,Srinivas,Garimella,,3,361,1857285
-462,PROFESSOR,TEACHER,Georgia Institute of Technology,4.0,good,Engineering,Hamid,Garmestani,,31,361,453737
+462,PROFESSOR,TEACHER,Georgia Institute of Technology,4.0,good,Engineering,Hamid,Garmestani,,32,361,453737
 463,PROFESSOR,TEACHER,Georgia Institute of Technology,5.0,good,Management,Jacqueline,Garner,,6,361,2274754
 464,PROFESSOR,TEACHER,Georgia Institute of Technology,3.0,average,Mathematics,Stavros,Garoufalidis,,6,361,1610011
 465,PROFESSOR,TEACHER,Georgia Institute of Technology,3.2,average,Biology,David,Garton,,24,361,467511
@@ -499,9 +499,9 @@
 497,PROFESSOR,TEACHER,Georgia Institute of Technology,2.2,poor,Biomedical Engineering,Rudolph,Gleason,,5,361,2216138
 498,PROFESSOR,TEACHER,Georgia Institute of Technology,4.0,good,Mechanical Engineering,Ari,Glezer,,2,361,2327003
 499,PROFESSOR,TEACHER,Georgia Institute of Technology,4.4,good,Computer Science,Ashok,Goel,,5,361,656210
-500,PROFESSOR,TEACHER,Georgia Institute of Technology,N/A,zero,English,Corey,Goergen,,0,361,2455656
+500,PROFESSOR,TEACHER,Georgia Institute of Technology,3.0,average,English,Corey,Goergen,,1,361,2455656
 501,PROFESSOR,TEACHER,Georgia Institute of Technology,N/A,zero,Industrial Engineering,Marc,Goetschalckx,,0,361,1880210
-502,PROFESSOR,TEACHER,Georgia Institute of Technology,1.0,poor,Materials Engineering,Arun,Gokhale,,1,361,2464233
+502,PROFESSOR,TEACHER,Georgia Institute of Technology,3.0,average,Materials Engineering,Arun,Gokhale,,2,361,2464233
 503,PROFESSOR,TEACHER,Georgia Institute of Technology,2.8,average,Industrial Engineering,David,Goldberg,,11,361,1747922
 504,PROFESSOR,TEACHER,Georgia Institute of Technology,4.2,good,Russian,Stuart,Goldberg,Harris,4,361,2023594
 505,PROFESSOR,TEACHER,Georgia Institute of Technology,4.8,good,English,Amanda,Golden,,13,361,1811797
@@ -865,8 +865,8 @@
 863,PROFESSOR,TEACHER,Georgia Institute of Technology,4.2,good,Civil Engineering,Edwin,Lim,,2,361,2023399
 864,PROFESSOR,TEACHER,Georgia Institute of Technology,5.0,good,Aerospace Engineering,Dongwook,Lim,,1,361,2401582
 865,PROFESSOR,TEACHER,Georgia Institute of Technology,2.1,poor,Mathematics,Zhiwu,Lin,,18,361,1238183
-866,PROFESSOR,TEACHER,Georgia Institute of Technology,4.0,good,Materials Engineering,Zhiqun,Lin,,1,361,2279021
-867,PROFESSOR,TEACHER,Georgia Institute of Technology,4.0,good,International Politics,Dalton,Lin,,2,361,2290386
+866,PROFESSOR,TEACHER,Georgia Institute of Technology,4.0,good,International Politics,Dalton,Lin,,2,361,2290386
+867,PROFESSOR,TEACHER,Georgia Institute of Technology,4.0,good,Materials Engineering,Zhiqun,Lin,,2,361,2279021
 868,PROFESSOR,TEACHER,Georgia Institute of Technology,2.1,poor,Internation Service,Jennie,Lincoln,,7,361,826453
 869,PROFESSOR,TEACHER,Georgia Institute of Technology,3.1,average,Engineering,Julie,Linsey,,6,361,1935315
 870,PROFESSOR,TEACHER,Georgia Institute of Technology,3.0,average,English,Kent,Linthicum,,2,361,2419402
@@ -930,7 +930,7 @@
 928,PROFESSOR,TEACHER,Georgia Institute of Technology,4.6,good,Mathematics,Dan,Margalit,,24,361,2096460
 929,PROFESSOR,TEACHER,Georgia Institute of Technology,3.7,good,Computer Science,Leo,Mark,,3,361,1422812
 930,PROFESSOR,TEACHER,Georgia Institute of Technology,5.0,good,English,Hannah,Markley,,3,361,2454074
-931,PROFESSOR,TEACHER,Georgia Institute of Technology,4.0,good,International Politics,Eliza,Markley,maria,22,361,2100427
+931,PROFESSOR,TEACHER,Georgia Institute of Technology,3.8,good,International Politics,Eliza,Markley,maria,24,361,2100427
 932,PROFESSOR,TEACHER,Georgia Institute of Technology,2.5,average,Psychology,Jack,Marr,,8,361,10619
 933,PROFESSOR,TEACHER,Georgia Institute of Technology,5.0,good,Management,Gregory,Marr,,1,361,2068985
 934,PROFESSOR,TEACHER,Georgia Institute of Technology,3.8,good,Computer Science,Kristin,Marsicano,,30,361,1223231
@@ -1055,7 +1055,7 @@
 1053,PROFESSOR,TEACHER,Georgia Institute of Technology,3.6,good,Psychology,Sunni,Newton,,5,361,1671875
 1054,PROFESSOR,TEACHER,Georgia Institute of Technology,4.6,good,Biomedical Engineering,Maysam,Nezafati,,8,361,2249909
 1055,PROFESSOR,TEACHER,Georgia Institute of Technology,4.0,good,Chemical Engineering,Nga Lee,Ng,,1,361,2217300
-1056,PROFESSOR,TEACHER,Georgia Institute of Technology,3.7,good,Mathematics,Shuenn Siang,Ng,,9,361,2405115
+1056,PROFESSOR,TEACHER,Georgia Institute of Technology,3.8,good,Mathematics,Shuenn Siang,Ng,,10,361,2405115
 1057,PROFESSOR,TEACHER,Georgia Institute of Technology,4.2,good,Engineering,Fawad,Niazi,,2,361,1663346
 1058,PROFESSOR,TEACHER,Georgia Institute of Technology,4.7,good,Information Technology Management,Marius Florin,Niculescu,,8,361,1343516
 1059,PROFESSOR,TEACHER,Georgia Institute of Technology,1.0,poor,Biology,Shuyi,Nie,,1,361,2474122
@@ -1246,7 +1246,7 @@
 1244,PROFESSOR,TEACHER,Georgia Institute of Technology,2.5,average,Materials Engineering,Michael,Sacks,,2,361,599398
 1245,PROFESSOR,TEACHER,Georgia Institute of Technology,3.7,good,Mechanical Engineering,Nader,Sadegh,,7,361,1595087
 1246,PROFESSOR,TEACHER,Georgia Institute of Technology,4.0,good,Electrical Engineering,Usman,Saeed,,1,361,1453562
-1247,PROFESSOR,TEACHER,Georgia Institute of Technology,1.5,poor,Electrical Engineering,Maryam,Saeedifard,,2,361,2010789
+1247,PROFESSOR,TEACHER,Georgia Institute of Technology,1.3,poor,Electrical Engineering,Maryam,Saeedifard,,3,361,2010789
 1248,PROFESSOR,TEACHER,Georgia Institute of Technology,1.8,poor,Mechanical Engineering,Richard,Salant,,2,361,1279804
 1249,PROFESSOR,TEACHER,Georgia Institute of Technology,5.0,good,Mechanical Engineering,Christopher,Saldana,J.,1,361,2373663
 1250,PROFESSOR,TEACHER,Georgia Institute of Technology,4.8,good,Aerospace Engineering,Joseph,Saleh,,11,361,1710478

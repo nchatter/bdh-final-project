@@ -45,7 +45,7 @@ gatechProfs = GATech.getAllProfs()
 profComments = dict()
 for prof in gatechProfs:
 	comments = GATech.getProfComments(prof['tid'])
-	profComments[prof['tid']] = comments
+	profComments[prof['tid']] = [comments]
 
 profs = pd.DataFrame(gatechProfs)
 profs.to_csv('profs.csv')
