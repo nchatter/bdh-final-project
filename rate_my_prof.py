@@ -36,7 +36,10 @@ class Scraper:
 		page = requests.get(
 				"https://www.ratemyprofessors.com/ShowRatings.jsp?tid=" + str(tid))
 		soup = BeautifulSoup(page.text, 'html.parser')
-		comments = soup.find_all("p", class_="commentsParagraph")
+		all_comments = soup.find_all("p", class_="commentsParagraph")
+		comments = []
+		for comment in all_comments:
+			comments.append(str(comment))
 		return comments
 
 GATech = Scraper(361)
@@ -45,17 +48,24 @@ gatechProfs = GATech.getAllProfs()
 profComments = dict()
 for prof in gatechProfs:
 	comments = GATech.getProfComments(prof['tid'])
-	profComments[prof['tid']] = [comments]
+	cleaned_comments = []
+	for comment in comments:
+		first_close = comment.find(">")
+		comment = comment[first_close + 1:]
+		second_open = comment.find("<")
+		clean_comment = comment[:second_open].strip()
+		# print("CLEAN COMMENT")
+		# print(clean_comment)
+		cleaned_comments.append(clean_comment)
+	# print("ALL CLEANED COMMENTS")
+	# print(cleaned_comments)
+	profComments[prof['tid']] = [cleaned_comments]
 
 profs = pd.DataFrame(gatechProfs)
 profs.to_csv('profs.csv')
 
-for tid in profComments:
-	print(tid)
-	print(profComments[tid])
-	print(len(profComments[tid]))
-comments = pd.DataFrame.from_dict(profComments)
-comments.to_csv('comments.csv')
+# comments = pd.DataFrame.from_dict(profComments)
+# comments.to_csv('comments.csv')
 
 
 
