@@ -4,6 +4,8 @@ import math
 import pandas as pd
 from bs4 import BeautifulSoup
 import re
+import csv
+from sentiment import text_to_pos_sentiment_score
 
 class Scraper:
 	def __init__(self, university):
@@ -48,29 +50,33 @@ gatechProfs = GATech.getAllProfs()
 profComments = dict()
 for prof in gatechProfs:
 	comments = GATech.getProfComments(prof['tid'])
+	print(comments)
 	cleaned_comments = []
 	for comment in comments:
 		first_close = comment.find(">")
 		comment = comment[first_close + 1:]
 		second_open = comment.find("<")
 		clean_comment = comment[:second_open].strip()
-		# print("CLEAN COMMENT")
-		# print(clean_comment)
 		cleaned_comments.append(clean_comment)
-	print("ALL CLEANED COMMENTS")
-	print(cleaned_comments)
-	profComments[prof['tid']] = [cleaned_comments]
+	profComments[prof['tid']] = cleaned_comments
 
 profs = pd.DataFrame(gatechProfs)
 profs.to_csv('profs.csv')
 
-print(profComments)
+prof_rating = {}
+for tid in profComments:
+	try:
+		if profComment[tid]:
+			prof_rating[tid] = text_to_pos_sentiment_score(''.join(comment for comment in profComments[tid]))
+		else:
+			prof_rating[tid] = 0
+	except:
+		print(tid)
+		break
 
-comments = pd.DataFrame.from_dict(profComments, orient='index')
-comments = comments.reset_index()
-comments = comments.rename(index=str, columns={"index": "tid"})
-comments.to_csv('comments.csv')
-
-
+with open('rating.csv', 'a') as fp:
+	w = csv.writer(fp)
+	w.writerows(mapping.items())
+#df.to_csv('ratings.csv', sep=',')
 
 
