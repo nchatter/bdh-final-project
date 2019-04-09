@@ -66,7 +66,7 @@ profs.to_csv('profs.csv')
 prof_rating = {}
 for tid in profComments:
 	try:
-		if profComment[tid]:
+		if profComments[tid]:
 			prof_rating[tid] = text_to_pos_sentiment_score(''.join(comment for comment in profComments[tid]))
 		else:
 			prof_rating[tid] = 0
@@ -76,7 +76,7 @@ for tid in profComments:
 
 with open('rating.csv', 'a') as fp:
 	w = csv.writer(fp)
-	w.writerows(mapping.items())
+	w.writerows(prof_rating.items())
 #df.to_csv('ratings.csv', sep=',')
 
 
