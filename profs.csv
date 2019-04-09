@@ -290,7 +290,7 @@
 288,PROFESSOR,TEACHER,Georgia Institute of Technology,3.8,good,Physics,Jennifer,Curtis,,9,361,1463896
 289,PROFESSOR,TEACHER,Georgia Institute of Technology,4.0,good,English,Lauren,Curtright,,1,361,1559535
 290,PROFESSOR,TEACHER,Georgia Institute of Technology,4.9,good,Sociology,Amy,D'Unger,,10,361,864880
-291,PROFESSOR,TEACHER,Georgia Institute of Technology,1.5,poor,Architecture,Richard,Dagenhart,,1,361,2090782
+291,PROFESSOR,TEACHER,Georgia Institute of Technology,3.3,average,Architecture,Richard,Dagenhart,,2,361,2090782
 292,PROFESSOR,TEACHER,Georgia Institute of Technology,2.5,average,Systems Engineering,Jiangang,Dai,,2,361,1143924
 293,PROFESSOR,TEACHER,Georgia Institute of Technology,N/A,zero,Civil Engineering,Sheng,Dai,,0,361,2398310
 294,PROFESSOR,TEACHER,Georgia Institute of Technology,5.0,good,International Politics,Liz,Dallas,A,2,361,1777408
@@ -391,7 +391,7 @@
 389,PROFESSOR,TEACHER,Georgia Institute of Technology,5.0,good,Computer Science,Hayley,Evans,,1,361,2319805
 390,PROFESSOR,TEACHER,Georgia Institute of Technology,2.2,poor,Mathematics,Esther,Ezra,,3,361,2047260
 391,PROFESSOR,TEACHER,Georgia Institute of Technology,3.3,average,Chemistry,Christoph,Fahrni,,8,361,581447
-392,PROFESSOR,TEACHER,Georgia Institute of Technology,3.5,good,English,Jeffrey,Fallis,,14,361,2217277
+392,PROFESSOR,TEACHER,Georgia Institute of Technology,3.5,good,English,Jeffrey,Fallis,,15,361,2217277
 393,PROFESSOR,TEACHER,Georgia Institute of Technology,3.8,good,English,Andrew,Famiglietti,,5,361,1309536
 394,PROFESSOR,TEACHER,Georgia Institute of Technology,3.0,average,Chinese,Zhewei,Fan,,2,361,1831805
 395,PROFESSOR,TEACHER,Georgia Institute of Technology,N/A,zero,Organizational Behavior,Yifeng,Fan,,0,361,2251537
@@ -1055,7 +1055,7 @@
 1053,PROFESSOR,TEACHER,Georgia Institute of Technology,3.6,good,Psychology,Sunni,Newton,,5,361,1671875
 1054,PROFESSOR,TEACHER,Georgia Institute of Technology,4.6,good,Biomedical Engineering,Maysam,Nezafati,,8,361,2249909
 1055,PROFESSOR,TEACHER,Georgia Institute of Technology,4.0,good,Chemical Engineering,Nga Lee,Ng,,1,361,2217300
-1056,PROFESSOR,TEACHER,Georgia Institute of Technology,3.8,good,Mathematics,Shuenn Siang,Ng,,10,361,2405115
+1056,PROFESSOR,TEACHER,Georgia Institute of Technology,3.9,good,Mathematics,Shuenn Siang,Ng,,11,361,2405115
 1057,PROFESSOR,TEACHER,Georgia Institute of Technology,4.2,good,Engineering,Fawad,Niazi,,2,361,1663346
 1058,PROFESSOR,TEACHER,Georgia Institute of Technology,4.7,good,Information Technology Management,Marius Florin,Niculescu,,8,361,1343516
 1059,PROFESSOR,TEACHER,Georgia Institute of Technology,1.0,poor,Biology,Shuyi,Nie,,1,361,2474122

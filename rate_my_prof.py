@@ -57,15 +57,17 @@ for prof in gatechProfs:
 		# print("CLEAN COMMENT")
 		# print(clean_comment)
 		cleaned_comments.append(clean_comment)
-	# print("ALL CLEANED COMMENTS")
-	# print(cleaned_comments)
+	print("ALL CLEANED COMMENTS")
+	print(cleaned_comments)
 	profComments[prof['tid']] = [cleaned_comments]
 
 profs = pd.DataFrame(gatechProfs)
 profs.to_csv('profs.csv')
 
-# comments = pd.DataFrame.from_dict(profComments)
-# comments.to_csv('comments.csv')
+print(profComments)
+
+comments = pd.DataFrame.from_dict(profComments)
+comments.to_csv('comments.csv')
 
 
 
