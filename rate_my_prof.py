@@ -66,7 +66,9 @@ profs.to_csv('profs.csv')
 
 print(profComments)
 
-comments = pd.DataFrame.from_dict(profComments)
+comments = pd.DataFrame.from_dict(profComments, orient='index')
+comments = comments.reset_index()
+comments = comments.rename(index=str, columns={"index": "tid"})
 comments.to_csv('comments.csv')
 
 
