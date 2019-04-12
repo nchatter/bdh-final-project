@@ -56,17 +56,11 @@ def get_acc_auc_kfold(X,Y,k=5):
         aucs.append(results[1])
     return mean(accuracies),mean(aucs)
 
-irp_data = pd.read_csv("combined_irp_data.csv", header=0, sep=',')
-oscar_data = pd.read_csv("combined_oscar_data.csv", header=0, sep=',')
 
-combined_data = pd.merge(oscar_data, irp_data, how='inner', on=['term', 'course_num', 'section'])
-dataframe = pd.DataFrame(combined_data)
-
-dataframe = dataframe[~dataframe.time.str.contains("ABBR")]
 
 def f(x):
     try:
-        if np.float(x) >= 0.00 and np.float(x) <= 4.00: return np.float(x)
+        if np.float(x) >= 0.05 and np.float(x) <= 4.00: return np.float(x)
         else: return np.nan
     except:
         return np.nan
@@ -82,9 +76,8 @@ def convert_military(x):
         minute = x.split('-')[0].strip().split(':')[1][0:2].strip()
         return int(str(int(hour)) + minute)
 
-def get_department(x):
-    dep = x.split(' ')[0].strip()
-    return dep
+def round_gpa(x):
+    return round(x, 1)
 
 def compute_acc(y_true, y_pred):
     running_sum = 0
@@ -92,26 +85,40 @@ def compute_acc(y_true, y_pred):
         running_sum += (f - b) * (f - b)
     return running_sum / float(len(y_pred))
 
+irp_data = pd.read_csv("combined_irp_data.csv", header=0, sep=',')
+oscar_data = pd.read_csv("combined_oscar_data.csv", header=0, sep=',')
+
+combined_data = pd.merge(oscar_data, irp_data, how='inner', on=['term', 'course_num', 'section'])
+dataframe = pd.DataFrame(combined_data)
+
+dataframe = dataframe[~dataframe.time.str.contains("ABBR")]
+
 
 dataframe['gpa'] = dataframe['gpa'].apply(f)
 dataframe = dataframe[pd.notnull(dataframe['gpa'])]
+dataframe['gpa'] = dataframe['gpa'].astype('float')
 
 dataframe['start'] = dataframe.apply(lambda row: row.time.split('-')[0].strip().split(':')[0] + row.time.split('-')[0].strip().split(':')[1][0:2], axis=1)
 dataframe['start_military'] = dataframe['time'].apply(convert_military).astype('float')
-dataframe['department'] = dataframe['course_num'].apply(get_department)
-
-#x_values = np.array(dataframe['start']).reshape((len(dataframe['start']), 1))
-#x_values = pd.concat([dataframe['start']])
-y_values = dataframe['gpa'].astype('float')
-x_values = pd.concat([dataframe['start_military'],dataframe['department']],axis=1)
+dataframe['gpa_rounded'] = dataframe['gpa'].apply(round_gpa)
 
 means = dataframe.groupby('start_military')['gpa'].mean()
 
+
+#x_values = np.array(dataframe['start']).reshape((len(dataframe['start']), 1))
+y_values = dataframe['gpa'].astype('float')
+#x_values = pd.concat([dataframe['start_military'],dataframe['department']],axis=1)
+x_values = np.array(dataframe['start_military']).reshape((len(dataframe['start']), 1))
+y_values = dataframe['gpa'].astype('float')
+
+'''
 colors = (0,0,0)
 area = np.pi*3
 plt.scatter(np.array(dataframe['start_military']), dataframe['gpa'], s=area, c=colors, alpha=0.5)
+plt.xlabel('Course Time')
+plt.ylabel('GPA')
 plt.show()
-
+'''
 
 x_train, x_test, y_train, y_test = train_test_split(x_values,y_values, test_size=0.30, random_state=RANDOM_STATE)
 clf = RandomForestRegressor(n_estimators=1000) #SVR(gamma='scale', C=1.0, epsilon=0.2)
@@ -119,6 +126,5 @@ clf.fit(x_train,y_train)
 predictions = clf.predict(x_test)
 
 
-print(clf.predict(np.array([1015]).reshape(-1,1)))
 print(clf.score(x_test,y_test))
 print(compute_acc(y_test, predictions))
