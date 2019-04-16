@@ -8,35 +8,12 @@ from sklearn.linear_model import LogisticRegression, SGDClassifier, LinearRegres
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor, ExtraTreesRegressor, GradientBoostingRegressor
 from sklearn.metrics import *
 from sklearn.svm import SVR
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 
 
 RANDOM_STATE = 545510477
 
-'''
-irp_data = pd.read_csv("combined_irp_data.csv", header=0, sep=',')
-oscar_data = pd.read_csv("combined_oscar_data.csv", header=0, sep=',')
-
-combined_data = pd.merge(oscar_data, irp_data, how='inner', on=['term', 'course_num', 'section'])
-dataframe = pd.DataFrame(combined_data)
-
-dataframe = dataframe[~dataframe.time.str.contains("ABBR")]
-
-dataframe['start'] = dataframe.apply(lambda row: row.time.split('-')[0].strip().split(':')[0] + row.time.split('-')[0].strip().split(':')[1][0:2], axis=1)
-
-
-dataframe.to_csv('merged_test.csv', sep=',')
-'''
-def my_classifier(X_train,Y_train,X_test):
-	#TODO: complete this
-    print(np.shape(X_train))
-    print(np.shape(Y_train))
-    print(np.shape(X_test))
-    clf = SGDClassifier(loss="hinge", penalty="l2", max_iter=5)
-    clf.fit(X_train, Y_train)
-    pred = clf.predict(X_test)
-    return pred
 
 def classification_metrics(Y_pred, Y_true):
     accuracy = accuracy_score(Y_true, Y_pred)
@@ -79,6 +56,21 @@ def convert_military(x):
 def round_gpa(x):
     return round(x, 1)
 
+def getFName(x):
+    x = ' '.join(x.split())
+    return x.split(' ')[0]
+
+def getLName(x):
+    x = ' '.join(x.split())
+    return x.split(' ')[-1]
+
+def getDiff(x):
+    return x.split(' ')[1][0]
+
+def getDept(x):
+    return x.split(' ')[0]
+
+
 def compute_acc(y_true, y_pred):
     running_sum = 0
     for f,b in zip(y_true, y_pred):
@@ -87,12 +79,11 @@ def compute_acc(y_true, y_pred):
 
 irp_data = pd.read_csv("../data/combined_irp_data.csv", header=0, sep=',')
 oscar_data = pd.read_csv("../data/combined_oscar_data.csv", header=0, sep=',')
+prof_data = pd.read_csv("../data/prof_comments_score.csv",header=None,sep=',',usecols=[0,1,2,3,4,5],names=['tid','overall_rating','fName','lName','num_ratings','pos_score'])
 
-combined_data = pd.merge(oscar_data, irp_data, how='inner', on=['term', 'course_num', 'section'])
-dataframe = pd.DataFrame(combined_data)
+dataframe = pd.merge(oscar_data, irp_data, how='inner', on=['term', 'course_num', 'section'])
 
 dataframe = dataframe[~dataframe.time.str.contains("ABBR")]
-
 
 dataframe['gpa'] = dataframe['gpa'].apply(f)
 dataframe = dataframe[pd.notnull(dataframe['gpa'])]
@@ -101,14 +92,20 @@ dataframe['gpa'] = dataframe['gpa'].astype('float')
 dataframe['start'] = dataframe.apply(lambda row: row.time.split('-')[0].strip().split(':')[0] + row.time.split('-')[0].strip().split(':')[1][0:2], axis=1)
 dataframe['start_military'] = dataframe['time'].apply(convert_military).astype('float')
 dataframe['gpa_rounded'] = dataframe['gpa'].apply(round_gpa)
+dataframe['difficulty'] = dataframe['course_num'].apply(getDiff)
+dataframe['department'] = dataframe['course_num'].apply(getDept)
+unique_departments = dataframe.department.unique()
+department_mapping = {k: v for v, k in enumerate(unique_departments)}
+dataframe['department'] = dataframe['department'].apply(lambda x: department_mapping[x])
+dataframe['fName'] = dataframe['prof'].apply(getFName)
+dataframe['lName'] = dataframe['prof'].apply(getLName)
 
-means = dataframe.groupby('start_military')['gpa'].mean()
-
+dataframe = pd.merge(dataframe,prof_data,how='inner',on=['fName','lName'])
 
 #x_values = np.array(dataframe['start']).reshape((len(dataframe['start']), 1))
-y_values = dataframe['gpa'].astype('float')
-#x_values = pd.concat([dataframe['start_military'],dataframe['department']],axis=1)
-x_values = np.array(dataframe['start_military']).reshape((len(dataframe['start']), 1))
+
+x_values = np.array(dataframe['start_military']).reshape(-1,1)
+x_values = pd.concat([dataframe['start_military'],dataframe['difficulty'],dataframe['pos_score'],dataframe['enrollment'],dataframe['department'],dataframe['credits']],axis=1)
 y_values = dataframe['gpa'].astype('float')
 
 '''
@@ -120,11 +117,31 @@ plt.ylabel('GPA')
 plt.show()
 '''
 
-x_train, x_test, y_train, y_test = train_test_split(x_values,y_values, test_size=0.30, random_state=RANDOM_STATE)
-clf = TheilSenRegressor() #SVR(gamma='scale', C=1.0, epsilon=0.2)
+x_train, x_test, y_train, y_test = train_test_split(x_values,y_values, test_size=0.20, random_state=RANDOM_STATE)
+clf = RandomForestRegressor(n_estimators=1000)
 clf.fit(x_train,y_train)
 predictions = clf.predict(x_test)
 
 
 print(clf.score(x_test,y_test))
 print(compute_acc(y_test, predictions))
+
+
+importances = clf.feature_importances_
+std = np.std([tree.feature_importances_ for tree in clf.estimators_],
+             axis=0)
+indices = np.argsort(importances)[::-1]
+
+# Print the feature ranking
+print("Feature ranking:")
+
+for f in range(x_values.shape[1]):
+    print("%d. feature %d (%f)" % (f + 1, indices[f], importances[indices[f]]))
+
+# Plot the feature importances of the forest
+plt.figure()
+plt.bar(range(x_values.shape[1]), importances[indices],
+       color="b", yerr=std[indices], align="center")
+plt.xticks(range(x_values.shape[1]), indices)
+plt.xlim([-1, x_values.shape[1]])
+plt.show()
