@@ -38,3 +38,6 @@ def create_sentiment_table(file_in, file_out):
                                   text_to_sentiment_label(row['Comments'])]
                 new_point = dict(zip(out_colnames, row_value_list))
                 out_writer.writerow(new_point)
+
+
+

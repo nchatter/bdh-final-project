@@ -1,5 +1,3 @@
-# Scraper for Rate My Professor website
-
 import requests
 import json
 import math
@@ -14,8 +12,6 @@ class Scraper:
 		self.univ_id = university
 		self.profs = self.getAllProfs()
 
-	# function that gets all professors for the chosen university
-	# goes through all possible pages
 	def getAllProfs(self):
 		numProfs = self.findNumProfs(self.univ_id)
 		totPages = math.ceil(numProfs / 20)
@@ -30,8 +26,6 @@ class Scraper:
 			ind += 1
 		return listOfProfs
 
-	# function that finds the total number of professors
-	# used to calculate the number of pages that will be present
 	def findNumProfs(self, univ_id):
 		page = requests.get(
                 "http://www.ratemyprofessors.com/filter/professor/?&page=1&filter=teacherlastname_sort_s+asc&query=*%3A*&queryoption=TEACHER&queryBy=schoolId&sid=" + str(
@@ -40,7 +34,6 @@ class Scraper:
 		numProfs = jsonPage['remaining'] + 20
 		return numProfs
 
-	# function that collects all the comments for a given professor id
 	def getProfComments(self, tid):
 		page = requests.get(
 				"https://www.ratemyprofessors.com/ShowRatings.jsp?tid=" + str(tid))
@@ -51,36 +44,33 @@ class Scraper:
 			comments.append(str(comment))
 		return comments
 
-# initialize the scraper
 GATech = Scraper(361)
-
-# obtain and parse the comments
 gatechProfs = GATech.getAllProfs()
-profComments = dict()
+# comments = GATech.getProfComments(2356565)
+print(gatechProfs)
 for prof in gatechProfs:
 	comments = GATech.getProfComments(prof['tid'])
 	cleaned_comments = []
+	score = 0
+	count = 0
 	for comment in comments:
 		first_close = comment.find(">")
 		comment = comment[first_close + 1:]
 		second_open = comment.find("<")
-		clean_comment = comment[:second_open].strip()
+		clean_comment = comment[:second_open].strip().decode('utf-8').encode('ascii', 'ignore').decode('unicode_escape')
+		if clean_comment:
+			score += text_to_pos_sentiment_score(clean_comment)
+			count += 1
 		cleaned_comments.append(clean_comment)
-	profComments[prof['tid']] = cleaned_comments
-
-# creating the CSV with professor data
-profs = pd.DataFrame(gatechProfs)
-profs.to_csv('../data/prof_data/profs.csv')
-
-prof_rating = {}
-for tid in profComments:
-		if (profComments[tid] and (profComments[tid] != 1848155)):
-			prof_rating[tid] = text_to_pos_sentiment_score(''.join(comment for comment in profComments[tid]))
-		else:
-			prof_rating[tid] = 0
-
-with open('../data/prof_data/rating.csv', 'a') as fp:
-	w = csv.writer(fp)
-	w.writerows(prof_rating.items())
+	prof_data = [prof['tid'],prof['overall_rating'],prof['tFname'],prof['tLname'],prof['tNumRatings']]
+	if count > 0:
+		prof_data.append(float(score)/count)
+	else:
+		prof_data.append(0)
+	print(prof_data)
+	prof_data.extend(cleaned_comments)
+	with open("prof_comments_score.csv", "a") as fp:
+		wr = csv.writer(fp)
+		wr.writerow(prof_data)
 
 
