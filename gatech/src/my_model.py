@@ -85,8 +85,8 @@ def compute_acc(y_true, y_pred):
         running_sum += (f - b) * (f - b)
     return running_sum / float(len(y_pred))
 
-irp_data = pd.read_csv("combined_irp_data.csv", header=0, sep=',')
-oscar_data = pd.read_csv("combined_oscar_data.csv", header=0, sep=',')
+irp_data = pd.read_csv("../data/combined_irp_data.csv", header=0, sep=',')
+oscar_data = pd.read_csv("../data/combined_oscar_data.csv", header=0, sep=',')
 
 combined_data = pd.merge(oscar_data, irp_data, how='inner', on=['term', 'course_num', 'section'])
 dataframe = pd.DataFrame(combined_data)

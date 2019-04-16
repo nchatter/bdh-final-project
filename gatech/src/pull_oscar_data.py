@@ -150,25 +150,25 @@ if __name__ == '__main__':
     process = 0
 
     start = time()
-    term = '201402'
+    #term = '201402'
     directory = term + '/'
     term_sem_courses, ignore_count, process_count = get_courses(directory)
     all_courses.extend(term_sem_courses)
     ignore += ignore_count
     process += process_count
-    with open('oscar_data_' + term, 'w') as f:
+    with open('../data/oscar_data/oscar_data_' + term, 'w') as f:
         writer = csv.writer(f, lineterminator='\n')
         for tup in term_sem_courses:
             writer.writerow(tup)
 
-
+    '''
     data = {'ignore':ignore, 'process':process}
     with open('process_' + term + '.json', 'w') as fp:
         json.dump(data, fp)
     end = time()
     print(end - start)
-
-    '''
+    
+    
     with open('oscar_data.csv', 'w') as f:
         writer = csv.writer(f, lineterminator='\n')
         for tup in all_courses:

@@ -15,7 +15,7 @@ if __name__ == '__main__':
     irp_data = []
     course_names_set = set()
 
-    path = "irp_data/"
+    path = "../data/irp_data/"
     for item in os.listdir(path):
         with open(path + item) as csvfile:
             readCSV = csv.reader(csvfile, delimiter=',')
@@ -45,5 +45,5 @@ if __name__ == '__main__':
                         irp_data.append(new_row)
                         course_names_set.add(term + course_num + course_section)
     dataframe = pd.DataFrame(irp_data)
-    dataframe.to_csv('combined_irp_data.csv', sep=',')
+    dataframe.to_csv('../data/combined_irp_data.csv', sep=',')
 

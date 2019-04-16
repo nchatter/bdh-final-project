@@ -70,7 +70,7 @@ for prof in gatechProfs:
 
 # creating the CSV with professor data
 profs = pd.DataFrame(gatechProfs)
-profs.to_csv('profs.csv')
+profs.to_csv('../data/prof_data/profs.csv')
 
 prof_rating = {}
 for tid in profComments:
@@ -79,7 +79,7 @@ for tid in profComments:
 		else:
 			prof_rating[tid] = 0
 
-with open('rating.csv', 'a') as fp:
+with open('../data/prof_data/rating.csv', 'a') as fp:
 	w = csv.writer(fp)
 	w.writerows(prof_rating.items())
 
