@@ -8,7 +8,7 @@ from sklearn.linear_model import LogisticRegression, SGDClassifier, LinearRegres
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor, ExtraTreesRegressor, GradientBoostingRegressor
 from sklearn.metrics import *
 from sklearn.svm import SVR
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 
 
@@ -121,7 +121,7 @@ plt.show()
 '''
 
 x_train, x_test, y_train, y_test = train_test_split(x_values,y_values, test_size=0.30, random_state=RANDOM_STATE)
-clf = RandomForestRegressor(n_estimators=1000) #SVR(gamma='scale', C=1.0, epsilon=0.2)
+clf = TheilSenRegressor() #SVR(gamma='scale', C=1.0, epsilon=0.2)
 clf.fit(x_train,y_train)
 predictions = clf.predict(x_test)
 
