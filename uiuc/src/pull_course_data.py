@@ -63,7 +63,7 @@ if __name__ == '__main__':
                     course_data = getCourseDetails(courses_url_map[key],prefix)
                     data.extend(course_data)
     df = pd.DataFrame(data)
-    df.to_csv('uiuc_combined_data.csv', sep=',')
+    df.to_csv('../data/course_data/uiuc_combined_data.csv', sep=',')
 
 
 

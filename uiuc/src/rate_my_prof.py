@@ -71,7 +71,7 @@ for prof in UIUCprofs[startIdx:endIdx]:
 	else:
 		prof_data.append(0)
 	prof_data.extend(cleaned_comments)
-	with open("prof_comments_score_" + str(startIdx) + "_" + str(endIdx) + ".csv", "a") as fp:
+	with open("../data/prof_data/prof_comments_score_" + str(startIdx) + "_" + str(endIdx) + ".csv", "a") as fp:
 		wr = csv.writer(fp)
 		try:
 			wr.writerow(prof_data)

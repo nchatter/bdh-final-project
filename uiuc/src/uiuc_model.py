@@ -40,9 +40,9 @@ def getFName(x):
 def getLName(x):
     return x.split(',')[0]
 
-course_data = pd.read_csv("data/course_data/uiuc_combined_data.csv", header=0, sep=',')
+course_data = pd.read_csv("../data/course_data/uiuc_combined_data.csv", header=0, sep=',')
 course_data = course_data.sort_values(['year','term','subject','number','section'],ascending=[False,True,True,True,True])
-prof_data = pd.read_csv("data/prof_data/prof_comments_score.csv",header=None,sep=',',usecols=[0,1,2,3,4,5],names=['tid','overall_rating','fName','lName','num_ratings','pos_score'])
+prof_data = pd.read_csv("../data/prof_data/prof_comments_score.csv",header=None,sep=',',usecols=[0,1,2,3,4,5],names=['tid','overall_rating','fName','lName','num_ratings','pos_score'])
 
 
 course_data = course_data[~course_data.time.str.contains("ARRANGED")]
@@ -55,7 +55,7 @@ course_data['key'] = course_data.apply(lambda x: str(x.year)+str(x.term)+str(x.s
 course_counts = course_data.groupby('key').count().to_dict()
 
 
-gpa_data = pd.read_csv("data/gpa/uiuc-gpa-dataset.csv",header=0,sep=',')
+gpa_data = pd.read_csv("../data/gpa/uiuc-gpa-dataset.csv",header=0,sep=',')
 gpa_data['enrollment'] = gpa_data.apply(lambda row: row.A_plus + row.A + row.A_minus + row.B_plus + row.B + row.B_minus + row.C_plus + row.C + row.C_minus + row.D_plus + row.D + row.D_minus + row.F ,axis=1)
 gpa_data['gpa'] = gpa_data.apply(lambda row: (row.A_plus*4 + row.A*4 + row.A_minus*3.67 + row.B_plus*3.33 + row.B*3 + row.B_minus*2.67 + row.C_plus*2.33 + row.C*2 + row.C_minus*1.67 + row.D_plus*1.33 + row.D + row.D_minus*0.67 + row.F*0)/float(row.enrollment),axis =1 )
 gpa_data['term'] = gpa_data['term'].str.lower()
