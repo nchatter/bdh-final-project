@@ -69,7 +69,7 @@ for prof in gatechProfs:
 		prof_data.append(0)
 	print(prof_data)
 	prof_data.extend(cleaned_comments)
-	with open("prof_comments_score.csv", "a") as fp:
+	with open("../data/prof_comments_score.csv", "a") as fp:
 		wr = csv.writer(fp)
 		wr.writerow(prof_data)
 
