@@ -6,7 +6,7 @@ This project is about understanding correlations between factors institutes can 
 - [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
 - [Data Collection](#data-collection)
-- [Data Filtering](#data-filtering)
+- [Data Filtering and Cleaning](#data-filtering)
 - [Model](#model)
 - [Authors](#authors)
 
@@ -52,7 +52,26 @@ The UIUC grade distribution is already aggregated and is publically avalible [he
 
 Professor sentiment for both universities is collected by first pulling comments from [RateMyProfessor](https://www.ratemyprofessors.com/) and then running the comments through [NLTK](http://text-processing.com) sentiment analyzing API. 
 
-## Data Filtering
+## Data Filtering and Cleaning 
+There are certain filtering operations required before merging the various datasets. 
+For Georgia Tech grade data, there are certain issues when working with PDFs and an OCR library. Due to issues with how data is pulled there are certain courses where the course number is cut off. In this situation, courses are dropped. Likewise courses without a professor listed are also dropped. Below are additional filtering operations: 
+- Obscure GPAs are dropped (GPA below 0.5 or above 4.00)
+- Course starting times are extracted and converted to military time 
+- First name of the professor is extracted 
+- Last Name of the professor is extracted
+- Level of the course is extracted 
+- Course Department is converted to a number 
+
+For UIUC, similar filtering operations are required: 
+- Average GPA is computed 
+- Courses without professor listed are dropped 
+- Course starting times are extracted and converted to military time 
+- First name of the professor is extracted 
+- Last Name of the professor is extracted
+- Level of the course is extracted 
+- Course Department is converted to a number
+
+For UIUC there is one additional filtering problem that arised. Course data only includes Lectures, however, grade data is broken down by Recitation section. For example, a course like ACCTY 201 has 2 lecture sections but 18 recitation sections. Therefore, in the course data there are only two entries, but in the grade data has 18 entries. Moreover, additional difficulty arises because a student in the first lecture can attend the first recitation and a student in the second lecture could also attend the firt recitation. Therefore, to account for this courses where the number of course data entries is equivalent to grade data entries are processed. 
 
 ## Authors
 - [Nupur Chatterji](https://www.linkedin.com/in/nupurchatterji/)
