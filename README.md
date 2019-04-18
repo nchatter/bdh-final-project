@@ -7,6 +7,7 @@ This project is about understanding correlations between factors institutes can 
 - [Getting Started](#getting-started)
 - [Data Collection](#data-collection)
 - [Data Filtering and Cleaning](#data-filtering)
+- [Data Aggregation](#data-aggregation)
 - [Model](#model)
 - [Authors](#authors)
 
@@ -72,6 +73,12 @@ For UIUC, similar filtering operations are required:
 - Course Department is converted to a number
 
 For UIUC there is one additional filtering problem that arised. Course data only includes Lectures, however, grade data is broken down by Recitation section. For example, a course like ACCTY 201 has 2 lecture sections but 18 recitation sections. Therefore, in the course data there are only two entries, but in the grade data has 18 entries. Moreover, additional difficulty arises because a student in the first lecture can attend the first recitation and a student in the second lecture could also attend the firt recitation. Therefore, to account for this courses where the number of course data entries is equivalent to grade data entries are processed. 
+
+## Data Aggregation
+Once data is cleaned, the different data sources can be combined. Georgia Tech course and grade data are inner joined on term, course number, and section. UIUC course and grade data are inner joined on year, term, subject, course number, and rank. Rank is a pre-computed number that used to distinguish different sections of the same course. Professor data is aggregated using the first and last name of the professor. 
+
+## Model 
+The trainable parameters are course start time, course level, course enrollment, course department/subject, number of credits, and professor sentiment. The measured value is the GPA of the course. Of the various models tested, the best performing model is a Random Forest Regressor model. The `my_model.py` and `uiuc_model.py` show the R^2 value of the regression model as well as an average distance score. This distance is the average difference between predicted value and true value. Lastly, the model also produces a graph for feature importance. 
 
 ## Authors
 - [Nupur Chatterji](https://www.linkedin.com/in/nupurchatterji/)
