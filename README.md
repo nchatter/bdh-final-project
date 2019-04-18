@@ -33,8 +33,12 @@ You can directly use the project folder or clone it from the github:
 The directory includes raw data, but you can execute the scripts to regnerate the data (in case of any updates)
 
 ## Data Collection
+The first aspect of this project is collecting data. There are three aspects of data that are collected for each institute: course data, grade data, and professor sentiment data. 
+
+For Georgia Tech, the course data is pulled from Oscar, which is a part of Georgia Tech's registration system. The pull_oscar_data script will produce a csv file for the semester that the script is pull data for. For example, currently, the script is set to pull data for 201702 (Line 153), which translates to Spring 2017. Line 153 needs to be modified to pull data for each semester. Fall 2017 is represented at 201708 and Summer 2018 is represented as 201705. The produced csv files will be stored in the /data/oscar_data directory. Using the clean_oscar_data script, all of the individual course data files will be combined to produce one combined csv, called combined_oscar_data.csv. 
+
 
 ## Authors
-- [Nupur Chatterji](https://github.com/nchatter)
-- [Reshav Sain](https://github.com/seanrsain) 
-- [Sreeramamurthy Tripuramallu](https://github.com/stripuramallu3) 
+- [Nupur Chatterji](https://www.linkedin.com/in/nupurchatterji/)
+- [Reshav Sain](https://www.linkedin.com/in/ssain/) 
+- [Sreeramamurthy Tripuramallu](https://www.linkedin.com/in/sree-tripuramallu/) 
