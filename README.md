@@ -26,13 +26,13 @@ To install all the required packages, copy the above paragraph into a txt file `
 
     pip install -U -r requirements.txt
 
-##Getting Started
+## Getting Started
 You can directly use the project folder or clone it from the github:
 
     git clone https://github.com/nchatter/bdh-final-project.git
 The directory includes raw data, but you can execute the scripts to regnerate the data (in case of any updates)
 
-##Data Collection
+## Data Collection
 
 ## Authors
 - [Nupur Chatterji](https://github.com/nchatter)
