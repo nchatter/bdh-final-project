@@ -11,7 +11,7 @@ This project is about understanding correlations between factors institutes can 
 
 ## Prerequisites
 This project is written in Apache Hive and Python, providing scripts which collect, process, and evaluate data. Make sure that your environment supprot Hadoop before you run the hive script. You can install the environment locally following the instruction: 
-[Docker in local OS]http://www.sunlab.org/teaching/cse6250/spring2019/env/env-local-docker.html#_1-install-docker).
+[Docker in local OS](http://www.sunlab.org/teaching/cse6250/spring2019/env/env-local-docker.html#_1-install-docker).
 
 We use Python 3 for this project. You need the following packages:
 
