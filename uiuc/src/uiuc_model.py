@@ -84,6 +84,14 @@ course_gpa_data.to_csv('course_gpa_data_test.csv',sep=',')
 x_values = pd.concat([course_gpa_data['start_military'],course_gpa_data['level'],course_gpa_data['enrollment'],course_gpa_data['department'],course_gpa_data['credits'], course_gpa_data['pos_score']],axis=1)
 y_values = course_gpa_data['gpa'].astype('float')
 
+'''
+colors = (0,0,0)
+area = np.pi*3
+plt.scatter(np.array(course_gpa_data['level']), course_gpa_data['gpa'], s=area, c=colors, alpha=0.5)
+plt.xlabel('Level')
+plt.ylabel('GPA')
+plt.savefig('foo.png')
+'''
 
 x_train, x_test, y_train, y_test = train_test_split(x_values,y_values, test_size=0.20, random_state=RANDOM_STATE)
 clf = RandomForestRegressor(n_estimators=1000)
