@@ -1,20 +1,20 @@
 -- ***************************************************************************
 -- DO NOT modify the below provided framework and variable names/orders please
 -- Loading Data:
--- create external table mapping for events.csv and mortality_events.csv
+-- create external table mapping for combined_irp_data.csv and course_irp_merged_data.csv
 
 -- IMPORTANT NOTES:
--- You need to put events.csv and mortality.csv under hdfs directory 
--- '/input/events/events.csv' and '/input/mortality/mortality.csv'
+-- You need to put combined_irp_data.csv and course_irp_merged_data.csv under hdfs directory 
+-- '/input/irp/combined_irp_data.csv' and '/input/irpMerged/course_irp_merged_data.csv'
 -- 
 -- To do this, run the following commands for events.csv, 
 -- 1. sudo su - hdfs
--- 2. hdfs dfs -mkdir -p /input/events
+-- 2. hdfs dfs -mkdir -p /input/irp
 -- 3. hdfs dfs -chown -R root /input
 -- 4. exit 
--- 5. hdfs dfs -put /path-to-events.csv /input/events/
--- Follow the same steps 1 - 5 for mortality.csv, except that the path should be 
--- '/input/mortality'
+-- 5. hdfs dfs -put /path-to-irp.csv /input/irp/
+-- Follow the same steps 1 - 5 for course_irp_merged_data.csv, except that the path should be 
+-- '/input/irpMerged'
 -- ***************************************************************************
 
 -- create irp events table 
