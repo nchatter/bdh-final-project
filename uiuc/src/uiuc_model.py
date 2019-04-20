@@ -79,7 +79,7 @@ gpa_data['rank'] = gpa_data.groupby(['key']).cumcount()+1
 
 course_gpa_data = pd.merge(course_data, gpa_data, how='inner', on=['key', 'rank'])
 course_gpa_data = pd.merge(course_gpa_data, prof_data, how='inner', on=['fName', 'lName'])
-course_gpa_data.to_csv('course_gpa_data_test.csv',sep=',')
+course_gpa_data.to_csv('../data/course_gpa_prof_data_test.csv',sep=',')
 
 x_values = pd.concat([course_gpa_data['start_military'],course_gpa_data['level'],course_gpa_data['enrollment'],course_gpa_data['department'],course_gpa_data['credits'], course_gpa_data['pos_score']],axis=1)
 y_values = course_gpa_data['gpa'].astype('float')
