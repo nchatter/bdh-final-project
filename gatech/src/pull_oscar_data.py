@@ -150,7 +150,7 @@ if __name__ == '__main__':
     process = 0
 
     start = time()
-    #term = '201402'
+    term = '201702'
     directory = term + '/'
     term_sem_courses, ignore_count, process_count = get_courses(directory)
     all_courses.extend(term_sem_courses)

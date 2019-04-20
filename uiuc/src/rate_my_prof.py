@@ -8,11 +8,14 @@ import csv
 from sentiment import text_to_pos_sentiment_score
 import sys
 
+# Writing a class to scrape Rate My Prof
 class Scraper:
 	def __init__(self, university):
 		self.univ_id = university
 		self.profs = self.getAllProfs()
 
+	# function to generate a list of all professors at the institution
+	# considers all the possible pages available
 	def getAllProfs(self):
 		numProfs = self.findNumProfs(self.univ_id)
 		totPages = math.ceil(numProfs / 20)
@@ -27,6 +30,8 @@ class Scraper:
 			ind += 1
 		return listOfProfs
 
+	# function that finds the total number of professors listed at the institution
+	# the result is used to find the total number of pages
 	def findNumProfs(self, univ_id):
 		page = requests.get(
                 "http://www.ratemyprofessors.com/filter/professor/?&page=1&filter=teacherlastname_sort_s+asc&query=*%3A*&queryoption=TEACHER&queryBy=schoolId&sid=" + str(
@@ -35,6 +40,8 @@ class Scraper:
 		numProfs = jsonPage['remaining'] + 20
 		return numProfs
 
+	# function that collects all the comments associated with a professor 
+	# the query is based on the professor tid
 	def getProfComments(self, tid):
 		page = requests.get(
 				"https://www.ratemyprofessors.com/ShowRatings.jsp?tid=" + str(tid))
@@ -48,9 +55,15 @@ class Scraper:
 startIdx = int(sys.argv[1])
 endIdx = int(sys.argv[2])
 
+# initializing scraper for UIUC
 UIUC = Scraper(1112)
+
+# instantiate a list of all professors
 UIUCprofs = UIUC.getAllProfs()
-# comments = GATech.getProfComments(2356565)
+
+# section that parses the comments and finds
+# the average sentiment per professor according 
+# to the comments left on their profile
 for prof in UIUCprofs[startIdx:endIdx]:
 	comments = UIUC.getProfComments(prof['tid'])
 	cleaned_comments = []

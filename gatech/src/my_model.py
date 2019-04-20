@@ -61,8 +61,9 @@ def getFName(x):
     return x.split(' ')[0]
 
 def getLName(x):
-    x = ' '.join(x.split())
-    return x.split(' ')[-1]
+    joined = ' '.join(x.split())
+    if 'target' in x: joined.split(' ')[1]
+    else: return joined.split(' ')[-1]
 
 def getDiff(x):
     return x.split(' ')[1][0]
@@ -79,7 +80,7 @@ def compute_acc(y_true, y_pred):
 
 irp_data = pd.read_csv("../data/combined_irp_data.csv", header=0, sep=',')
 oscar_data = pd.read_csv("../data/combined_oscar_data.csv", header=0, sep=',')
-prof_data = pd.read_csv("../data/prof_comments_score.csv",header=None,sep=',',usecols=[0,1,2,3,4,5],names=['tid','overall_rating','fName','lName','num_ratings','pos_score'])
+prof_data = pd.read_csv("../data/prof_data/prof_comments_score.csv",header=None,sep=',',usecols=[0,1,2,3,4,5],names=['tid','overall_rating','fName','lName','num_ratings','pos_score'])
 
 dataframe = pd.merge(oscar_data, irp_data, how='inner', on=['term', 'course_num', 'section'])
 
@@ -111,10 +112,10 @@ y_values = dataframe['gpa'].astype('float')
 '''
 colors = (0,0,0)
 area = np.pi*3
-plt.scatter(np.array(dataframe['start_military']), dataframe['gpa'], s=area, c=colors, alpha=0.5)
-plt.xlabel('Course Time')
+plt.scatter(np.array(dataframe['term']), dataframe['gpa'], s=area, c=colors, alpha=0.5)
+plt.xlabel('Term')
 plt.ylabel('GPA')
-plt.show()
+plt.savefig('foo.png')
 '''
 
 x_train, x_test, y_train, y_test = train_test_split(x_values,y_values, test_size=0.20, random_state=RANDOM_STATE)
