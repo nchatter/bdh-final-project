@@ -111,9 +111,9 @@ y_values = dataframe['gpa'].astype('float')
 '''
 colors = (0,0,0)
 area = np.pi*3
-plt.scatter(np.array(dataframe['credits']), dataframe['enrollment'], s=area, c=colors, alpha=0.5)
-plt.xlabel('Credits')
-plt.ylabel('Enrollment')
+plt.scatter(np.array(dataframe['term']), dataframe['gpa'], s=area, c=colors, alpha=0.5)
+plt.xlabel('Term')
+plt.ylabel('GPA')
 plt.savefig('foo.png')
 '''
 
