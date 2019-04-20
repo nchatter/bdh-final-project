@@ -61,8 +61,9 @@ def getFName(x):
     return x.split(' ')[0]
 
 def getLName(x):
-    x = ' '.join(x.split())
-    return x.split(' ')[-1]
+    joined = ' '.join(x.split())
+    if 'target' in x: joined.split(' ')[1]
+    else: return joined.split(' ')[-1]
 
 def getDiff(x):
     return x.split(' ')[1][0]
