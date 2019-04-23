@@ -53,6 +53,8 @@ The UIUC grade distribution is already aggregated and is publically avalible [he
 
 Professor sentiment for both universities is collected by first pulling comments from [RateMyProfessor](https://www.ratemyprofessors.com/) and then running the comments through [NLTK](http://text-processing.com) sentiment analyzing API. 
 
+CAUTION: Running data collection scripts will take hours, run at your own risk. Cleaned data is already available in repository. 
+
 ## Data Filtering and Cleaning 
 There are certain filtering operations required before merging the various datasets. 
 For Georgia Tech grade data, there are certain issues when working with PDFs and an OCR library. Due to issues with how data is pulled there are certain courses where the course number is cut off. In this situation, courses are dropped. Likewise courses without a professor listed are also dropped. Below are additional filtering operations: 
