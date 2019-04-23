@@ -9,7 +9,7 @@ from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor, Extr
 from sklearn.metrics import *
 from sklearn.svm import SVR
 import matplotlib.pyplot as plt
-
+import pickle 
 
 
 RANDOM_STATE = 545510477
@@ -121,6 +121,10 @@ plt.savefig('foo.png')
 x_train, x_test, y_train, y_test = train_test_split(x_values,y_values, test_size=0.20, random_state=RANDOM_STATE)
 clf = RandomForestRegressor(n_estimators=1000)
 clf.fit(x_train,y_train)
+
+with open('gatech_model.pkl', 'wb') as fp:
+    pickle.dump(clf, fp)
+
 predictions = clf.predict(x_test)
 
 
