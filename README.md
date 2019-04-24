@@ -80,7 +80,9 @@ For UIUC, one additional filtering problem occurred. Course data only includes L
 Once data is cleaned, the different data sources can be combined. Georgia Tech course and grade data are inner joined on term, course number, and section. UIUC course and grade data are inner joined on year, term, subject, course number, and rank. Rank is a pre-computed number that used to distinguish different sections of the same course. Professor data is aggregated using the first and last name of the professor. 
 
 ## Model 
-The trainable parameters are course start time, course level, course enrollment, course department/subject, number of credits, and professor sentiment. The measured value is the GPA of the course. Of the various models tested, the best performing model is a Random Forest Regressor model. The `my_model.py` and `uiuc_model.py` show the R<sup>2</sup> value of the regression model as well as an average distance score. This distance is the average difference between predicted value and true value. Lastly, the model also produces a graph for feature importance. The best models are saved as pickle files in the corresponding src folders, but were too large to upload to Github.
+The trainable parameters are course start time, course level, course enrollment, course department/subject, number of credits, and professor sentiment. The measured value is the GPA of the course. Of the various models tested, the best performing model is a Random Forest Regressor model. The `my_model.py` and `uiuc_model.py` show the R<sup>2</sup> value of the regression model as well as an average distance score. This distance is the average difference between predicted value and true value. Lastly, the model also produces a graph for feature importance. 
+
+The best models are saved as pickle files and can be found [here](https://drive.google.com/drive/folders/1Sh06d0JyioNgICN9CL1iRZMFfzHjVR7Y?usp=sharing).
 
 ## Authors
 - [Nupur Chatterji](https://www.linkedin.com/in/nupurchatterji/)
